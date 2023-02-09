@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/Layouts/_LoginLayout.cshtml";
+
+}
+
+
+<div class="col-xs-1 center-block align-content-center text-center align-items-center justify-content-center align-middle h-100 ">
+    <div class="mb-3">
+        <h1>Acceso</h1>
+    </div>
+    <div>
+        <form method="post">
+            <input class="mb-2 border-2" type="number" name="name" id="name" maxlength="1" placeholder="Codigo de empleado" /><br />
+            <input class="mb-2 border-2" type="password" name="password" id="password"  placeholder="Contraseña" /><br />
+            <button class="btn btn-dark border-2 text-light" type="submit"> >> </button>
+        </form>
+    </div>
+@Html.ActionLink("Registrate aqui","Register")
+</div>
+
