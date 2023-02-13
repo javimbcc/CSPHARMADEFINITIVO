@@ -15,8 +15,9 @@ namespace WebApplication1.Models.ConsultasPostgreSQL
 
         //Metodo para loguearte en la aplicacion
 
-        public static NpgsqlDataReader listaDeEmpleadosLogin(IConfiguration _config, string name, string password)
+        public static List<DlkCatAccEmpleadoDTOcs> listaDeEmpleadosLogin(IConfiguration _config, string name, string password)
         {
+            List<DlkCatAccEmpleadoDTOcs> usuarioData = new List<DlkCatAccEmpleadoDTOcs>();
             Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaDeEmpleadosLogin]: Entrando al metodo");
             //Hacemos la conexion
             using var connection = new NpgsqlConnection(_config.GetConnectionString("EFCConexion"));
@@ -25,14 +26,19 @@ namespace WebApplication1.Models.ConsultasPostgreSQL
             Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaDeEmpleadosLogin]: Hacemos y ejecutamos la consulta");
             //ConsultaSQL
             Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaDeEmpleadosLogin]: Generando consulta");
-            NpgsqlCommand consulta = new NpgsqlCommand($"SELECT * FROM \"public\".\"dlk_cat_acc_empleado\" WHERE cod_empleado='{name}' AND clave_empleado='{password}'", connection);
+            NpgsqlCommand consulta = new NpgsqlCommand($"SELECT * FROM \"dlk_informacional\".\"dlk_cat_acc_empleado\" WHERE cod_empleado='{name}' AND clave_empleado='{password}'", connection);
+            Console.WriteLine(consulta.ToString());
             Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaDeEmpleadosLogin]: Ejecutando consulta");
             NpgsqlDataReader resultadoConsulta = consulta.ExecuteReader();
+            Console.WriteLine(resultadoConsulta.ToString());
             //Cerramos la conexion
             Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaDeEmpleadosLogin]: Cerrando conexion");
+            usuarioData = loginToList.ReaderToList(resultadoConsulta);
             connection.Close();
             //devolvemos el resultado
-            return resultadoConsulta;
+            return usuarioData;
+            
+           
         }
 
         //Metodo para crear usuarios
@@ -54,8 +60,34 @@ namespace WebApplication1.Models.ConsultasPostgreSQL
             //Ejecutamos la consulta
             Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-registrarUsuario]: Cerrando conexion");
             Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-registrarUsuario]: Saliendo del metodo");
+        }
+
+        //Metodo para recoger todos los empleados
+
+        public static List<DlkCatAccEmpleadoDTOcs> listaDeEmpleados(IConfiguration _config)
+        {
+            List<DlkCatAccEmpleadoDTOcs> usuarioData = new List<DlkCatAccEmpleadoDTOcs>();
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaDeEmpleados]: Entrando al metodo");
+            //Hacemos la conexion
+            using var connection = new NpgsqlConnection(_config.GetConnectionString("EFCConexion"));
+            connection.Open();
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaDeEmpleados]: Abriendo conexion");
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaDeEmpleados]: Hacemos y ejecutamos la consulta");
+            //ConsultaSQL
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaDeEmpleados]: Generando consulta");
+            NpgsqlCommand consulta = new NpgsqlCommand($"SELECT * FROM \"dlk_informacional\".\"dlk_cat_acc_empleado\"", connection);
+            Console.WriteLine(consulta.ToString());
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaDeEmpleados]: Ejecutando consulta");
+            NpgsqlDataReader resultadoConsulta = consulta.ExecuteReader();
+            Console.WriteLine(resultadoConsulta.ToString());
             //Cerramos la conexion
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaDeEmpleados]: Cerrando conexion");
+            usuarioData = loginToList.ReaderToList(resultadoConsulta);
             connection.Close();
+            //devolvemos el resultado
+            return usuarioData;
+
+
         }
     }
     

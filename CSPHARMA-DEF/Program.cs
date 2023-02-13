@@ -9,6 +9,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<CspharmaInformacionalContext>(
 o => o.UseNpgsql(builder.Configuration.GetConnectionString("EFCConexion"))
 );
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(5);
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -29,6 +33,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

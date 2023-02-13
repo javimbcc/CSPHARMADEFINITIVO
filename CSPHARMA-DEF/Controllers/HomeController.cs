@@ -40,14 +40,12 @@ namespace WebApplication1.Controllers
         public IActionResult Index(string name, string password)
         {
             //Hacemos la consulta y comprobamos si tiene resultados
-            NpgsqlDataReader resultadoConsulta = ConsultasPostgreSQLcs.listaDeEmpleadosLogin(_config, name, password);
+            List<DlkCatAccEmpleadoDTOcs> resultadoConsulta = ConsultasPostgreSQLcs.listaDeEmpleadosLogin(_config, name, password);
             //Despues de hacer la consulta guardamos sus datos en una lista para poder leer el rol de usuario que tienen 
-            List<DlkCatAccEmpleadoDTOcs> usuarioData = new List<DlkCatAccEmpleadoDTOcs>();
-            usuarioData = loginToList.ReaderToList(resultadoConsulta);
-            if (resultadoConsulta.HasRows)
+            if (resultadoConsulta.Count() == 1)
             {
                 //Metemos los valores en ViewBags para pasarlos a la vista
-                ViewBag.IsAdmin = usuarioData[3].NivelAccesoEmpleado;
+                ViewBag.IsAdmin = resultadoConsulta[0].NivelAccesoEmpleado.ToString();
                 if (string.IsNullOrEmpty(HttpContext.Session.GetString("_User")))
                 {
                     HttpContext.Session.SetString("_User", name);
@@ -115,6 +113,16 @@ namespace WebApplication1.Controllers
                 return View("Register");
             }
             return View();
+        }
+
+        //Controlador para listar los empleados
+        public IActionResult verEmpleados()
+        {
+            //Declaramos la lista
+            //Hacemos la consulta y metemos sus datos en la lista
+            List<DlkCatAccEmpleadoDTOcs> resultadoConsulta = ConsultasPostgreSQLcs.listaDeEmpleados(_config);
+            //Devolvemos los datos a la vista
+            return View("verEmpleados",resultadoConsulta);
         }
 
 
