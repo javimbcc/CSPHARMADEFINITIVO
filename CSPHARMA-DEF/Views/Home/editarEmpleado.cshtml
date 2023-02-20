@@ -16,11 +16,13 @@
 
 @foreach (DlkCatAccEmpleadoDTOcs emp in Model)
 {
-    <div>
-        <h1>Empleado n @emp.CodEmpleado</h1>
-        <p>CodAlum: @emp.CodEmpleado</p>
-        <p>NivelAcc: @emp.NivelAccesoEmpleado</p>
-    </div>
+    <form method="post">
+        <div>
+            <h1>Empleado n @emp.CodEmpleado</h1>
+            <input class="mb-2 border-2" type="number" name="rol" id="rol" maxlength="1" value="@emp.CodEmpleado">
+            <input class="mb-2 border-2" type="password" name="clave" id="clave" maxlength="1" value="@emp.ClaveEmpleado">
+        </div>
+    </form>
 }
 
 

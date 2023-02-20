@@ -138,7 +138,15 @@ namespace WebApplication1.Controllers
 
             return View("editarEmpleado",usuarioAEditar);
         }
-        
+
+        [HttpPost]
+        public IActionResult editarEmpleado(long rol, String clave)
+        {
+            
+
+            return View("editarEmpleado");
+        }
+
 
 
     }
