@@ -16,8 +16,9 @@
 @foreach (DlkCatAccEmpleadoDTOcs emp in Model)
 {
     <div>
-        <h1>Nombre alumno</h1>
+        <h1>Empleado n @emp.CodEmpleado</h1>
         <p>CodAlum: @emp.CodEmpleado</p>
         <p>NivelAcc: @emp.NivelAccesoEmpleado</p>
+        @Html.ActionLink("Editar","editarEmpleado",new {id = @emp.CodEmpleado})
     </div>
 }

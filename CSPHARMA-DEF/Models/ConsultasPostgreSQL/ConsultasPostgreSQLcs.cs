@@ -37,8 +37,8 @@ namespace WebApplication1.Models.ConsultasPostgreSQL
             connection.Close();
             //devolvemos el resultado
             return usuarioData;
-            
-           
+
+
         }
 
         //Metodo para crear usuarios
@@ -89,6 +89,34 @@ namespace WebApplication1.Models.ConsultasPostgreSQL
 
 
         }
+
+        //Metodo para recoger los datos de un usuario con su codEmpleado
+        public static List<DlkCatAccEmpleadoDTOcs> listaEmpleadoCODEMP(IConfiguration _config, long codEmp)
+        {
+            List<DlkCatAccEmpleadoDTOcs> usuarioData = new List<DlkCatAccEmpleadoDTOcs>();
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaEmpleadoCODEMP]: Entrando al metodo");
+            //Hacemos la conexion
+            using var connection = new NpgsqlConnection(_config.GetConnectionString("EFCConexion"));
+            connection.Open();
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaEmpleadoCODEMP]: Abriendo conexion");
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaEmpleadoCODEMP]: Hacemos y ejecutamos la consulta");
+            //ConsultaSQL
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaEmpleadoCODEMP]: Generando consulta");
+            NpgsqlCommand consulta = new NpgsqlCommand($"SELECT * FROM \"dlk_informacional\".\"dlk_cat_acc_empleado\" WHERE cod_empleado = '{codEmp}' ", connection);
+            Console.WriteLine(consulta.ToString());
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaEmpleadoCODEMP]: Ejecutando consulta");
+            NpgsqlDataReader resultadoConsulta = consulta.ExecuteReader();
+            Console.WriteLine(resultadoConsulta.ToString());
+            //Cerramos la conexion
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaEmpleadoCODEMP]: Cerrando conexion");
+            usuarioData = loginToList.ReaderToList(resultadoConsulta);
+            Console.WriteLine(usuarioData);
+            connection.Close();
+            //devolvemos el resultado
+            return usuarioData;
+
+
+        }
+
     }
-    
 }

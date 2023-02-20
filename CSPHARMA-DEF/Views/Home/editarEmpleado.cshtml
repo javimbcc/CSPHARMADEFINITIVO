@@ -1,0 +1,31 @@
+﻿@using WebApplication1.Models.DTOs
+@{
+    if (ViewBag.IsAdmin == "0")
+    {
+        Layout = "~/Views/Shared/Layouts/_AdminLayout.cshtml";
+
+    }
+    else if (ViewBag.IsAdmin == "1")
+    {
+        Layout = "~/Views/Shared/Layouts/_AdminLayout.cshtml";
+    }
+    @model List<DlkCatAccEmpleadoDTOcs>
+
+}
+<h1>Información del usuario</h1>
+
+@foreach (DlkCatAccEmpleadoDTOcs emp in Model)
+{
+    <div>
+        <h1>Empleado n @emp.CodEmpleado</h1>
+        <p>CodAlum: @emp.CodEmpleado</p>
+        <p>NivelAcc: @emp.NivelAccesoEmpleado</p>
+    </div>
+}
+
+
+
+
+
+
+

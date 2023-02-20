@@ -1,5 +1,6 @@
 ﻿using DAL.Modelo;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -21,11 +22,14 @@ namespace WebApplication1.Controllers
         private readonly ILogger<HomeController> _logger;
         //añadimos nuestro archivo de configuracion json para recoger la cadena de conexion
         private readonly IConfiguration _config;
+        //Recogemos el contexto de la aplicacion y lo inicializamos
+        private readonly DAL.Modelo.CspharmaInformacionalContext _context;
 
-        public HomeController(ILogger<HomeController> logger, IConfiguration config)
+        public HomeController(ILogger<HomeController> logger, IConfiguration config, DAL.Modelo.CspharmaInformacionalContext context)
         {
             _logger = logger;
             _config = config;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -124,6 +128,17 @@ namespace WebApplication1.Controllers
             //Devolvemos los datos a la vista
             return View("verEmpleados",resultadoConsulta);
         }
+
+        //Ventana de editar usuario
+        [HttpGet]
+        public IActionResult editarEmpleado(long id)
+        {
+           List<DlkCatAccEmpleadoDTOcs> usuarioAEditar = ConsultasPostgreSQLcs.listaEmpleadoCODEMP(_config, id);
+            Console.WriteLine(usuarioAEditar.Count());
+
+            return View("editarEmpleado",usuarioAEditar);
+        }
+        
 
 
     }
