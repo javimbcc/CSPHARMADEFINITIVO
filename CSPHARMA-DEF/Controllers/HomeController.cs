@@ -129,49 +129,29 @@ namespace WebApplication1.Controllers
             return View("verEmpleados",resultadoConsulta);
         }
 
-        //Ventana de editar usuario
-        // GET: DlkCatAccEmpleadoes/Edit/5
-        public async Task<IActionResult> Edit(long? id)
+        //Controlador de editar usuario
+        public async Task<IActionResult> Editar(long? id)
         {
-
-            var dlkCatAccEmpleado = await _context.DlkCatAccEmpleados.FindAsync(id);
+            //Nos creamos una variable donde vamos a guardar el id del usuario seleccionado para 
+            //Que cuando le demos al boton de editar estemos seguros de que es el usuario que queremos editar
+            //Este valor lo pasamos por url en asp-route-id en "verEmpleados"
+            var dlkCatAccEmpleado =  await _context.DlkCatAccEmpleados.FindAsync(id);
             return View("editarEmpleado", dlkCatAccEmpleado);
         }
 
-        // POST: DlkCatAccEmpleadoes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //Controlador que emite la accion de editar 
+        //Es decir es el controlador que hace el edit a la base de datos y guarda los cambios
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("MdUuid,MdDate,CodEmpleado,ClaveEmpleado,NivelAccesoEmpleado")] DlkCatAccEmpleado dlkCatAccEmpleado)
+        //Metodo HttpPost dado que estamos haciendo un envio de datos
+        //Metodo async para que no se salte procesos en cola y pueda llevar a errores
+        public async Task<IActionResult> Editar(long id, DlkCatAccEmpleado dlkCatAccEmpleado)
         {
-            if (ModelState.IsValid)
-            {
                 _context.Update(dlkCatAccEmpleado);
                 await _context.SaveChangesAsync();
+            //Una vez terminada la accion devolvemos al usuario a la vista verEmpleados
                 return RedirectToAction(nameof(verEmpleados));
-            }
+            //Pasamos a la vista nuestro modelo de dlkCatAccEmpleado para poder mostrar los valores ya establecidos anteriormente
             return View("editarEmpleado", dlkCatAccEmpleado);
         }
-        //public IActionResult editarEmpleado(long id)
-        //{
-        //    List<DlkCatAccEmpleadoDTOcs> usuarioAEditar = ConsultasPostgreSQLcs.listaEmpleadoCODEMP(_config, id);
-        //    Console.WriteLine(usuarioAEditar.Count());
-
-        //    return View("editarEmpleado",usuarioAEditar);
-        //}
-
-        //[HttpPost,ActionName("editarEmpleado")]
-        //public IActionResult editar(long rol, String clave)
-        //{
-        //    long id = 32;
-
-        //    ConsultasPostgreSQLcs.editarUsuario(_config, rol, clave, id);
-
-        //    return View("editarEmpleado");
-        //}
-
-
-
     }
 }
