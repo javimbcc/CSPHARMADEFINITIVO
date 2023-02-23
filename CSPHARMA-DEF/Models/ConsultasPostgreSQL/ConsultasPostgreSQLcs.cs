@@ -118,5 +118,24 @@ namespace WebApplication1.Models.ConsultasPostgreSQL
 
         }
 
+        //Metodo para editar los campos 
+        public static void editarUsuario(IConfiguration _config, long rol, string clave,long id)
+        {
+            //creamos la conexion
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-editarUsuario]: Entrando al metodo");
+            using var connection = new NpgsqlConnection(_config.GetConnectionString("EFCConexion"));
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-editarUsuario]: Abriendo conexion");
+            Console.WriteLine("HABRIENDO CONEXION");
+            //Abrimos la conexion
+            connection.Open();
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-editarUsuario]: Creando consulta");
+            //Creamos la consulta
+            NpgsqlCommand consulta = new NpgsqlCommand($"UPDATE \"dlk_informacional\".\"dlk_cat_acc_empleado\" SET clave_empleado={clave}, nivel_acceso_empleado={rol} WHERE cod_empleado={id}", connection);
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-editarUsuario]: ejecutando consulta");
+            NpgsqlDataReader resultadoConsulta = consulta.ExecuteReader();
+            //Ejecutamos la consulta
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-editarUsuario]: Cerrando conexion");
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-editarUsuario]: Saliendo del metodo");
+        }
     }
 }

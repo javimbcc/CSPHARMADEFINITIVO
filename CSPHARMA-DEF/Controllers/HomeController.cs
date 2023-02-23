@@ -130,22 +130,46 @@ namespace WebApplication1.Controllers
         }
 
         //Ventana de editar usuario
-        [HttpGet]
-        public IActionResult editarEmpleado(long id)
+        // GET: DlkCatAccEmpleadoes/Edit/5
+        public async Task<IActionResult> Edit(long? id)
         {
-           List<DlkCatAccEmpleadoDTOcs> usuarioAEditar = ConsultasPostgreSQLcs.listaEmpleadoCODEMP(_config, id);
-            Console.WriteLine(usuarioAEditar.Count());
 
-            return View("editarEmpleado",usuarioAEditar);
+            var dlkCatAccEmpleado = await _context.DlkCatAccEmpleados.FindAsync(id);
+            return View("editarEmpleado", dlkCatAccEmpleado);
         }
 
+        // POST: DlkCatAccEmpleadoes/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public IActionResult editarEmpleado(long rol, String clave)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(long id, [Bind("MdUuid,MdDate,CodEmpleado,ClaveEmpleado,NivelAccesoEmpleado")] DlkCatAccEmpleado dlkCatAccEmpleado)
         {
-            
-
-            return View("editarEmpleado");
+            if (ModelState.IsValid)
+            {
+                _context.Update(dlkCatAccEmpleado);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(verEmpleados));
+            }
+            return View("editarEmpleado", dlkCatAccEmpleado);
         }
+        //public IActionResult editarEmpleado(long id)
+        //{
+        //    List<DlkCatAccEmpleadoDTOcs> usuarioAEditar = ConsultasPostgreSQLcs.listaEmpleadoCODEMP(_config, id);
+        //    Console.WriteLine(usuarioAEditar.Count());
+
+        //    return View("editarEmpleado",usuarioAEditar);
+        //}
+
+        //[HttpPost,ActionName("editarEmpleado")]
+        //public IActionResult editar(long rol, String clave)
+        //{
+        //    long id = 32;
+
+        //    ConsultasPostgreSQLcs.editarUsuario(_config, rol, clave, id);
+
+        //    return View("editarEmpleado");
+        //}
 
 
 

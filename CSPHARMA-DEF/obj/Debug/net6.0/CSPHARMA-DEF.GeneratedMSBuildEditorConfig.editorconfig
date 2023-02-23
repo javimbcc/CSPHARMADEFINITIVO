@@ -15,10 +15,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\menaj\source\repos\CSPHARMA-DEF\CSPHARMA-DEF
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/menaj/source/repos/CSPHARMA-DEF/CSPHARMA-DEF/Pages/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/menaj/source/repos/CSPHARMA-DEF/CSPHARMA-DEF/Views/Home/editarEmpleado.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxlZGl0YXJFbXBsZWFkby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
