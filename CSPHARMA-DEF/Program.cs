@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddDbContext<CspharmaInformacionalContext>(
 o => o.UseNpgsql(builder.Configuration.GetConnectionString("EFCConexion"))
 );

@@ -12,6 +12,13 @@ namespace WebApplication1.Models.ConsultasPostgreSQL
 {
     public class ConsultasPostgreSQLcs
     {
+        //-----------------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------------
+        //                                  CONSULTAS DE LOS USUARIOS
+        //-----------------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------------
 
         //Metodo para loguearte en la aplicacion
 
@@ -54,7 +61,7 @@ namespace WebApplication1.Models.ConsultasPostgreSQL
             connection.Open();
             Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-registrarUsuario]: Creando consulta");
             //Creamos la consulta
-            NpgsqlCommand consulta = new NpgsqlCommand($"INSERT INTO \"public\".\"users\" (usuario_nick, usuario_password) VALUES('{name}','{password}')", connection);
+            NpgsqlCommand consulta = new NpgsqlCommand($"INSERT INTO \"public\".\"users\" (usuario_nick, usuario_password,nivel_acceso_empleado) VALUES('{name}','{password}',2)", connection);
             Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-registrarUsuario]: ejecutando consulta");
             NpgsqlDataReader resultadoConsulta = consulta.ExecuteReader();
             //Ejecutamos la consulta
@@ -63,7 +70,6 @@ namespace WebApplication1.Models.ConsultasPostgreSQL
         }
 
         //Metodo para recoger todos los empleados
-
         public static List<DlkCatAccEmpleadoDTOcs> listaDeEmpleados(IConfiguration _config)
         {
             List<DlkCatAccEmpleadoDTOcs> usuarioData = new List<DlkCatAccEmpleadoDTOcs>();
@@ -114,28 +120,42 @@ namespace WebApplication1.Models.ConsultasPostgreSQL
             connection.Close();
             //devolvemos el resultado
             return usuarioData;
-
-
         }
 
-        //Metodo para editar los campos 
-        public static void editarUsuario(IConfiguration _config, long rol, string clave,long id)
+
+        //-----------------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------------
+        //                                  CONSULTAS DE LOS PEDIDOS
+        //-----------------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------------
+
+        //Consulta para listar los pedidos existentes
+        public static List<DlkCatAccEmpleadoDTOcs> listaDePedidos(IConfiguration _config)
         {
-            //creamos la conexion
-            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-editarUsuario]: Entrando al metodo");
+            List<DlkCatAccEmpleadoDTOcs> usuarioData = new List<DlkCatAccEmpleadoDTOcs>();
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaDePedidos]: Entrando al metodo");
+            //Hacemos la conexion
             using var connection = new NpgsqlConnection(_config.GetConnectionString("EFCConexion"));
-            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-editarUsuario]: Abriendo conexion");
-            Console.WriteLine("HABRIENDO CONEXION");
-            //Abrimos la conexion
             connection.Open();
-            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-editarUsuario]: Creando consulta");
-            //Creamos la consulta
-            NpgsqlCommand consulta = new NpgsqlCommand($"UPDATE \"dlk_informacional\".\"dlk_cat_acc_empleado\" SET clave_empleado={clave}, nivel_acceso_empleado={rol} WHERE cod_empleado={id}", connection);
-            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-editarUsuario]: ejecutando consulta");
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaDePedidos]: Abriendo conexion");
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaDePedidos]: Hacemos y ejecutamos la consulta");
+            //ConsultaSQL
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaDePedidos]: Generando consulta");
+            NpgsqlCommand consulta = new NpgsqlCommand($"SELECT * FROM \"dlk_informacional\".\"dlk_cat_acc_empleado\"", connection);
+            Console.WriteLine(consulta.ToString());
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaDePedidos]: Ejecutando consulta");
             NpgsqlDataReader resultadoConsulta = consulta.ExecuteReader();
-            //Ejecutamos la consulta
-            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-editarUsuario]: Cerrando conexion");
-            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-editarUsuario]: Saliendo del metodo");
+            Console.WriteLine(resultadoConsulta.ToString());
+            //Cerramos la conexion
+            Console.WriteLine("[Modelos-ConsultasPostgreSQL-ConsultasPostgreSQL-listaDePedidos]: Cerrando conexion");
+            usuarioData = loginToList.ReaderToList(resultadoConsulta);
+            connection.Close();
+            //devolvemos el resultado
+            return usuarioData;
+
+
         }
     }
 }

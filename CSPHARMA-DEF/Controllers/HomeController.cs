@@ -49,10 +49,15 @@ namespace WebApplication1.Controllers
             if (resultadoConsulta.Count() == 1)
             {
                 //Metemos los valores en ViewBags para pasarlos a la vista
-                ViewBag.IsAdmin = resultadoConsulta[0].NivelAccesoEmpleado.ToString();
+                String Rol = resultadoConsulta[0].NivelAccesoEmpleado.ToString();
+                //Guardamos el nombre del usuario en la session y su rol para poder reusarlo en toda la aplicacion
                 if (string.IsNullOrEmpty(HttpContext.Session.GetString("_User")))
                 {
                     HttpContext.Session.SetString("_User", name);
+                }
+                if (string.IsNullOrEmpty(HttpContext.Session.GetString("Rol")))
+                {
+                    HttpContext.Session.SetString("_Rol",Rol);
                 }
                 return View("HomePage");
             }

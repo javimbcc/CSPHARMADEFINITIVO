@@ -1,17 +1,19 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
 @{
 
-    if (ViewBag.IsAdmin == "0")
-    {
-        Layout = "~/Views/Shared/Layouts/_AdminLayout.cshtml";
+    //if (@HttpContextAccessor.HttpContext.Session.GetString("_Rol")
+    //     == "0")
+    //{
+    //    Layout = "~/Views/Shared/Layouts/_AdminLayout.cshtml";
 
-    }
-    else if (ViewBag.IsAdmin == "1")
-    {
-        Layout = "~/Views/Shared/Layouts/_AdminLayout.cshtml";
-    }
+    //}
+    //else if (@HttpContextAccessor.HttpContext.Session.GetString("_Rol")
+    //     == "1")
+    //{
+    //    Layout = "~/Views/Shared/Layouts/_AdminLayout.cshtml";
+    //}
     
 
 }
