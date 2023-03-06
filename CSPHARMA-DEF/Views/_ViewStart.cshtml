@@ -1,14 +1,12 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @{
-    if (@HttpContextAccessor.HttpContext.Session.GetString("_Rol")
-         == "0")
+    if (@HttpContextAccessor.HttpContext.Session.GetString("_Rol") == "0")
     {
         Layout = "~/Views/Shared/Layouts/_AdminLayout.cshtml";
 
     }
-    else if (@HttpContextAccessor.HttpContext.Session.GetString("_Rol")
-         == "1")
+    else if (@HttpContextAccessor.HttpContext.Session.GetString("_Rol") == "1")
     {
         Layout = "~/Views/Shared/Layouts/_AdminLayout.cshtml";
     }

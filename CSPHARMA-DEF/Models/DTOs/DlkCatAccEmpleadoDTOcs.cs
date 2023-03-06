@@ -7,12 +7,21 @@
      */
     public class DlkCatAccEmpleadoDTOcs
     {
-        public string CodEmpleado { get; set; }
 
-        public string ClaveEmpleado { get; set; } = null!;
+        //Atributos
+        private string codEmpleado;
 
-        public string NivelAccesoEmpleado { get; set; }
+        private string claveEmpleado;
 
+        private string nivelAccesoEmpleado;
+
+        //Getter y setter
+
+        public string CodEmpleado { get => codEmpleado; set => codEmpleado = value; }
+        public string ClaveEmpleado { get => claveEmpleado; set => claveEmpleado = value; }
+        public string NivelAccesoEmpleado { get => nivelAccesoEmpleado; set => nivelAccesoEmpleado = value; }
+
+        //Constructor
 
         public DlkCatAccEmpleadoDTOcs(string CodEmpleado, string ClaveEmpleado, string NivelAccesoEmpleado)
         {
@@ -22,5 +31,7 @@
             this.NivelAccesoEmpleado = NivelAccesoEmpleado;
 
         }
+
+
     }
 }

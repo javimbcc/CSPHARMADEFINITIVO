@@ -1,7 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/Layouts/_LoginLayout.cshtml";
-
 }
 
 
@@ -16,6 +15,6 @@
             <button class="btn btn-dark border-2 text-light" type="submit"> >> </button>
         </form>
     </div>
-@Html.ActionLink("Registrate aqui","Register")
+    <a class="nav-link text-dark" asp-area="" asp-controller="Registro" asp-action="Registro">Logueate si ya tienes cuenta</a>
 </div>
 

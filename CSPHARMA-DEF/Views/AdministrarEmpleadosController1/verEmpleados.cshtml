@@ -1,0 +1,11 @@
+﻿@using WebApplication1.Models.DTOs
+
+@foreach (DlkCatAccEmpleadoDTOcs emp in Model)
+{
+    <div>
+        <h1>Empleado n @emp.CodEmpleado</h1>
+        <p>CodAlum: @emp.CodEmpleado</p>
+        <p>NivelAcc: @emp.NivelAccesoEmpleado</p>
+        <a asp-action="Editar" asp-route-id="@emp.CodEmpleado">Editar</a> 
+    </div>
+}
