@@ -1,0 +1,64 @@
+﻿@model DAL.Modelo.TdcTchEstadoPedido
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>TdcTchEstadoPedido</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MdUuid" class="control-label"></label>
+                <input asp-for="MdUuid" class="form-control" />
+                <span asp-validation-for="MdUuid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MdDate" class="control-label"></label>
+                <input asp-for="MdDate" class="form-control" />
+                <span asp-validation-for="MdDate" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="CodEstadoEnvio" class="control-label"></label>
+                <select asp-for="CodEstadoEnvio" class="form-control" asp-items="ViewBag.CodEstadoEnvio"></select>
+                <span asp-validation-for="CodEstadoEnvio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodEstadoPago" class="control-label"></label>
+                <select asp-for="CodEstadoPago" class="form-control" asp-items="ViewBag.CodEstadoPago"></select>
+                <span asp-validation-for="CodEstadoPago" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodEstadoDevolucion" class="control-label"></label>
+                <select asp-for="CodEstadoDevolucion" class="form-control" asp-items="ViewBag.CodEstadoDevolucion"></select>
+                <span asp-validation-for="CodEstadoDevolucion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodPedido" class="control-label"></label>
+                <input asp-for="CodPedido" class="form-control" />
+                <span asp-validation-for="CodPedido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodLinea" class="control-label"></label>
+                <select asp-for="CodLinea" class="form-control" asp-items="ViewBag.CodLinea"></select>
+                <span asp-validation-for="CodLinea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
