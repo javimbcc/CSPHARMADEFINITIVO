@@ -5,10 +5,12 @@
 }
 
 <h1>Lista de Pedidos</h1>
-
-<p>
-    <a asp-action="Create">Añadir</a>
-</p>
+<form asp-controller="Pedidos" asp-action="Index">
+    <p>
+        Title: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
 <table class="table">
     <thead>
         <tr>

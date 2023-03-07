@@ -84,5 +84,41 @@ namespace CSPHARMA_DEF.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        //Metodo para buscar por un formulario
+        //sirve para poder buscar por cadena de texto
+        [HttpPost]
+        public async Task<IActionResult> Index(string searchString)
+        {
+            //Comprobamos el contexto de nuestra clase para que al buscar no tengamos problemas
+            if (_context.TdcTchEstadoPedidos == null)
+            {
+                return Problem("Entity set '_context.TdcTchEstadoPedidos'  is null.");
+            }
+
+            //Hacemos una consulta linq para seleccionar lo que vamos a buscar,
+            //en nuestro caso pedidos
+            var pedidos = from m in _context.TdcTchEstadoPedidos
+                          .Include(t => t.CodEstadoDevolucionNavigation)
+                          .Include(t => t.CodEstadoEnvioNavigation)
+                          .Include(t => t.CodEstadoPagoNavigation)
+                          .Include(t => t.CodLineaNavigation)
+            select m;
+
+            //Si nuestra cadena de texto no es nula buscaremos 
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                pedidos = pedidos.Where(s => s.CodLinea.Contains(searchString) ||
+                s.CodEstadoPago.Contains(searchString) ||
+                s.CodEstadoEnvio.Contains(searchString) ||
+                s.CodEstadoDevolucion.Contains(searchString) ||
+                s.CodPedido.Contains(searchString)
+                );
+            }
+
+
+            //devolvemos a la lista el resultado
+            return View(await pedidos.ToListAsync());
+        }
     }
 }

@@ -3,6 +3,10 @@ using Npgsql;
 
 namespace WebApplication1.Models.DTOs.DataToList
 {
+    /*
+     * Clase que contiene el paso de la respuesta de la base de datos a lista DTO con los datos que nos interesan
+     * @authior Jmenabc
+     */
     public class loginToList
     {
 
