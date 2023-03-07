@@ -8,6 +8,10 @@ using WebApplication1.Models.DTOs;
 
 namespace CSPHARMA_DEF.Controllers
 {
+    /*
+     * Controlador que contiene los metodos de listar todos los empleados y su edicion
+     * @author Jmenabc
+     */
     public class AdministrarEmpleadosController1 : Controller
     {
 

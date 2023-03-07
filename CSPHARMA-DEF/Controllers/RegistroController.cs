@@ -5,6 +5,11 @@ using WebApplication1.Models.ConsultasPostgreSQL;
 
 namespace CSPHARMA_DEF.Controllers
 {
+
+    /*
+     * Controlador que tiene los metodos necesarios para hacer funcionar el registro
+     * @author Jmenabc
+     */
     public class RegistroController : Controller
     {
         //añadimos nuestro archivo de configuracion json para recoger la cadena de conexion
