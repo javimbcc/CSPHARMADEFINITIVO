@@ -39,6 +39,11 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        public IActionResult HomePage()
+        {
+            return View();
+        }
+
 
         //Metodo post para comprobar si los credenciales de inicio de sesión son correctos
 

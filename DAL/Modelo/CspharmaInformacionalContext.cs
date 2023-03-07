@@ -40,7 +40,7 @@ public partial class CspharmaInformacionalContext : DbContext
             entity.ToTable("dlk_cat_acc_empleado", "dlk_informacional");
 
             entity.Property(e => e.CodEmpleado)
-                .ValueGeneratedNever()
+                .UseIdentityAlwaysColumn()
                 .HasColumnName("cod_empleado");
             entity.Property(e => e.ClaveEmpleado)
                 .HasColumnType("character varying")

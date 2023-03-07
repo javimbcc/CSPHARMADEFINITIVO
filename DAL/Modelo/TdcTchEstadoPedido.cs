@@ -28,5 +28,4 @@ public partial class TdcTchEstadoPedido
     public virtual TdcCatEstadosPagoPedido? CodEstadoPagoNavigation { get; set; }
 
     public virtual TdcCatLineasDistribucion CodLineaNavigation { get; set; } = null!;
-
 }

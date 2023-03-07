@@ -15,16 +15,20 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\menaj\source\repos\CSPHARMA-DEF\CSPHARMA-DEF
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/menaj/source/repos/CSPHARMA-DEF/CSPHARMA-DEF/Views/AdministrarEmpleadosController1/Creado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXJFbXBsZWFkb3NDb250cm9sbGVyMVxDcmVhZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/menaj/source/repos/CSPHARMA-DEF/CSPHARMA-DEF/Views/AdministrarEmpleadosController1/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXJFbXBsZWFkb3NDb250cm9sbGVyMVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/menaj/source/repos/CSPHARMA-DEF/CSPHARMA-DEF/Views/AdministrarEmpleadosController1/editarEmpleado.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXJFbXBsZWFkb3NDb250cm9sbGVyMVxlZGl0YXJFbXBsZWFkby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/menaj/source/repos/CSPHARMA-DEF/CSPHARMA-DEF/Views/AdministrarEmpleadosController1/verEmpleados.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXJFbXBsZWFkb3NDb250cm9sbGVyMVx2ZXJFbXBsZWFkb3MuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/menaj/source/repos/CSPHARMA-DEF/CSPHARMA-DEF/Views/Añadir/Registrar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQcOxYWRpclxSZWdpc3RyYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/menaj/source/repos/CSPHARMA-DEF/CSPHARMA-DEF/Views/Home/HomePage.cshtml]

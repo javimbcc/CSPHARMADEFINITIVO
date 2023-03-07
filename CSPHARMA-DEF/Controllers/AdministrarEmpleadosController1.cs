@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using WebApplication1.Controllers;
 using WebApplication1.Models.ConsultasPostgreSQL;
 using WebApplication1.Models.DTOs;
@@ -73,8 +74,26 @@ namespace CSPHARMA_DEF.Controllers
             await _context.SaveChangesAsync();
             //Una vez terminada la accion devolvemos al usuario a la vista verEmpleados
             return RedirectToAction(nameof(verEmpleados));
-            //Pasamos a la vista nuestro modelo de dlkCatAccEmpleado para poder mostrar los valores ya establecidos anteriormente
-            return View("editarEmpleado", dlkCatAccEmpleado);
+            
+        }
+
+        //Metodo que nos enviara a la vista de crear usuarios
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(DlkCatAccEmpleado dlkCatAccEmpleado)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(dlkCatAccEmpleado);
+                await _context.SaveChangesAsync();
+                return View("Creado");
+            }
+            return View(dlkCatAccEmpleado);
+
         }
     }
 }
